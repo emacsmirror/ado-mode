@@ -569,7 +569,7 @@ Finally, here is the complete keymap for ado-mode:
 		  (if (string= ado-extension "do")
 			  (setq ado-smart-indent-flag ado-do-indent-flag))))
   ;; for initializations needing Stata in `ado-stata-home`
-  (message "%s" "Grrrrr. about to look for Stata")
+  ;; (message "%s" "Grrrrr. about to look for Stata")
   (when (ado-find-stata)
 	(unless ado-new-dir
 	  (unless ado-personal-dir
@@ -577,7 +577,7 @@ Finally, here is the complete keymap for ado-mode:
 	  (setq ado-new-dir ado-personal-dir))
 	(when ado-add-sysdir-font-lock
 	  (ado-add-sysdir-all)))
-  (message "%s" "Yay, done with the headache.")
+  ;; (message "%s" "Yay, done with the headache.")
   (run-mode-hooks 'ado-mode-hook))
 
 
@@ -807,7 +807,7 @@ CUSBLP specifies a custom template file. When not specified, the template will
 	(if keepbuf
 		;; need progn because of else way far down
 		(progn
-		  (if (string= ado-version-command "")
+		  (if (string= ado-version-command "")<
 			  (ado-reset-version-command))
 		  (goto-char (point-min))
 		  (while (search-forward "stata!!version" nil t)
