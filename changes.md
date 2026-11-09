@@ -1,5 +1,18 @@
 # Version History
 
+## 1.19.5.4
+
+* Fixed another way ado-mode would error out if it could not find
+  the Stata executable.
+
+* Added new commands from the 14oct2026 and 29jul2026 updates to
+  StataNow 19.5
+
+* Added new -xth...- commands from the 06nov2026 update to StataNow 19.5
+
+* Added new -putdocx findreplace- commands from the 06nov2026 update to
+  StataNow 19.5
+
 ## 1.19.5.3
 
 * No more erroring out if ado-mode cannot find a Stata executable.

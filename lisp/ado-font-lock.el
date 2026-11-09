@@ -843,13 +843,15 @@
 	  ado-end-cmd-regexp )
 	 '(1 ado-builtin-harmless-face) '(2 ado-subcommand-face t))
 	
-	
 
-	;; fracreg commands
+	;; (xthdid)fracreg commands
 	(list
 	 (concat
 	  ado-start-cmd-regexp
-	  "\\(\\<fracreg\\>\\)"
+	  (eval-when-compile
+		(regexp-opt
+		 '("fracreg" "xthdidfracreg")
+		 'words))
 	  "[ \t]+"
 	  (eval-when-compile
 		(regexp-opt
@@ -1065,6 +1067,23 @@
 	  ado-end-cmd-regexp )
 	 '(1 ado-builtin-harmless-face) '(2 ado-subcommand-face t))
 
+	;; incomplete putdocx with second command
+	(list
+	 (concat
+	  ado-start-cmd-no-prefix-regexp
+	  (eval-when-compile
+		(regexp-opt
+		 '("putdocx")
+		 'words))
+	  "[ \t]+"
+	  (eval-when-compile
+		(regexp-opt
+		 '("findreplace"
+		   "textblock")
+		 'words))
+	  ado-end-cmd-regexp )
+	 '(1 ado-needs-subcommand-face) '(2 ado-needs-subcommand-face))
+
 	(list
 	 (concat
 	  ado-start-cmd-regexp
@@ -1076,9 +1095,23 @@
 		   "end")
 		 'words))
 	  ado-end-cmd-regexp )
-	 '(1 ado-builtin-harmless-face) '(2 ado-subcommand-face t)
+	 '(1 ado-builtin-harmless-face t) '(2 ado-subcommand-face t)
 	 '(3 ado-subcommand-face t))
+
 	
+	(list
+	 (concat
+	  ado-start-cmd-regexp
+	  "\\(putdocx\\)[ \t]+\\(findreplace\\)[ \t]*"
+	  (eval-when-compile
+		(regexp-opt
+		 '("query"
+		   "replace" "reset"
+		   "set")
+		 'words))
+	  ado-end-cmd-regexp )
+	 '(1 ado-builtin-harmless-face t) '(2 ado-subcommand-face t)
+	 '(3 ado-subcommand-face t))
 
 	;; st_is
 	(list
@@ -1227,7 +1260,7 @@
 		   "tracen" "tracenu" "tracenum" "tracenumb" "tracenumbe" "tracenumber"
 		   "traces" "tracese" "tracesep"
 		   "ty" "typ" "type"
-		   "update_prompt" "update_query"
+		   "update_prompt" "update_query" "use_progress"
 		   "varabbrev" "varkeyboard"
 		   "xptheme")
 		 'words))
@@ -1337,7 +1370,7 @@
 		   "tracei" "tracein" "traceind" "traceinde" "traceinden" "traceindent"
 		   "tracen" "tracenu" "tracenum" "tracenumb" "tracenumbe" "tracenumber"
 		   "traces" "tracese" "tracesep"
-		   "update_prompt" "update_query"
+		   "update_prompt" "update_query" "use_progress"
 		   "varabbrev" "varkeyboard"
 		   "xptheme")
 		 'words))
@@ -5115,7 +5148,9 @@
 		   "xtdidregress" "xtdpd" "xtdpdsys"
 		   "xteregress" "xteintreg" "xteoprobit" "xteprobit"
 		   "xtfrontier"
-		   "xtgee" "xtgls" "xtheckman" "xthtaylor" "xtintreg" "xtivreg"
+		   "xtgee" "xtgls"
+		   "xthdidlogit" "xthdidprobit"
+		   "xtheckman" "xthtaylor" "xtintreg" "xtivreg"
 		   "xtline" "xtlogit"
 		   "xtmlogit"
 		   "xtnbreg" "xtologit" "xtoprobit" "xtpcse" "xtpoisson" "xtprobit"
@@ -6506,7 +6541,7 @@
 	  '(1  ado-subcommand-face t))
 
 	;; beginning special commands (mostly alphabetical)
-	;; all the -collect- commands (Stata 17)
+	;; all the collect commands (Stata 17)
 	;; all harmless, at least for now
 	(list
 	 (concat
@@ -6519,6 +6554,7 @@
 			"clear" "combine" "copy" "create"
 			"dims" "dir" "drop"
 			"export"
+			"fromframe"
 			"get" "get:"
 			"keep"
 			"layout" "levels" "levelso" "levelsof"

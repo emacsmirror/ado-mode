@@ -3,7 +3,7 @@
 ;; Copyright (C) 1996-2026 Bill Rising
 
 ;; Author: Bill Rising <brising@alum.mit.edu>
-;; Version: 1.19.5.2
+;; Version: 1.19.5.4
 ;; Keywords: tools,languages,files,convenience,Stata, Mata, ado
 ;; Package-Requires: ((emacs "25.1"))
 ;; URL: https://github.com/louabill/ado-mode
@@ -544,7 +544,7 @@ Finally, here is the complete keymap for ado-mode:
   ;; setup directories which could be needed
   ;;  Melpa insists that all .el files must be copied up one directory, which
   ;;    messes with any decent file structure
-  (message "%s" "About to hit ado-home-mode test")
+  ;; (message "%s" "About to hit ado-home-mode test")
   (unless ado-mode-home
 	(setq ado-mode-home
 		  (file-name-as-directory (expand-file-name (file-name-directory (locate-file "ado-mode.el" load-path))))))
